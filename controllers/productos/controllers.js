@@ -14,7 +14,6 @@ export const getProductsRequest = async (req, res) => {
 export const createProductRequest = async (req, res) => {
   const { nombre, cantidad, unidad } = req.body;
 
-  console.log({nombre, cantidad, unidad});
 
   try {
     const newproduct = new Producto({

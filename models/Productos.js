@@ -15,6 +15,10 @@ const ProductosSchemma = new Schema(
     unidad: {
       type: String,
       require: true,
+    },
+    area: {
+      type: String,
+      require: true,
     }
   },
   {
