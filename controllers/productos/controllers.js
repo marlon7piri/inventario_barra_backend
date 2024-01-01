@@ -12,20 +12,18 @@ export const getProductsRequest = async (req, res) => {
 };
 
 export const createProductRequest = async (req, res) => {
-  const { nombre, precio, cantidad, fecha_entrada} = req.body;
+  const { nombre, cantidad, unidad } = req.body;
+
+  console.log({nombre, cantidad, unidad});
 
   try {
-   
-      const newproduct =  new Producto({
-        nombre,
-        precio,
-        cantidad,
-        fecha_entrada,
-     
-      });
-      const productosaved = await newproduct.save();
-      return res.status(200).json(productosaved);
-
+    const newproduct = new Producto({
+      nombre,
+      unidad,
+      cantidad,
+    });
+    const productosaved = await newproduct.save();
+    return res.status(200).json(productosaved);
   } catch (error) {
     return res.status(400).json({ message: error.message });
   }
@@ -37,7 +35,7 @@ export const getProductRequest = async (req, res) => {
   try {
     const productFound = await Producto.findById(id);
 
-    return res.json(productFound)
+    return res.json(productFound);
   } catch (error) {
     return res.status(400).json({ message: error.message });
   }
@@ -49,17 +47,13 @@ export const updateProductRequest = async (req, res) => {
 
   const newProductInfo = {
     nombre: newproduct.nombre,
-    precio: newproduct.precio,
     cantidad: newproduct.cantidad,
-    fecha_entrada: newproduct.fecha_entrada,
-    agotado: newproduct.estado,
+    unidad: newproduct.unidad,
   };
   try {
-    const productupdate = await Producto.findByIdAndUpdate(
-      id,
-      newProductInfo,
-      { new: true }
-    );
+    const productupdate = await Producto.findByIdAndUpdate(id, newProductInfo, {
+      new: true,
+    });
 
     return res.json(productupdate);
   } catch (error) {

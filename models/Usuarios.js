@@ -1,19 +1,19 @@
 import mongoose from "mongoose";
 import { Schema } from "mongoose";
 
-const ProductosSchemma = new Schema(
+const UsuarioSchema = new Schema(
   {
     nombre: {
       type: String,
       require: true,
     },
-    cantidad: {
-      type: Number,
+    password: {
+      type: String,
       require: true,
     }
     ,
-    unidad: {
-      type: String,
+    isAdmin: {
+      type: Boolean,
       require: true,
     }
   },
@@ -22,7 +22,7 @@ const ProductosSchemma = new Schema(
   }
 );
 
-ProductosSchemma.set("toJSON", {
+UsuarioSchema.set("toJSON", {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id;
 
@@ -31,4 +31,4 @@ ProductosSchemma.set("toJSON", {
   },
 });
 
-export default mongoose.model("Producto", ProductosSchemma);
+export default mongoose.model("Usuario", UsuarioSchema);

@@ -3,14 +3,14 @@ import {getProductsRequest,createProductRequest,getProductRequest,updateProductR
 
 
 
-const routes = Router();
+const productRoutes = Router();
 
-routes.get("/api/productos",getProductsRequest)
-routes.post("/api/productos",createProductRequest)
-routes.delete("/api/productos/:id",deleteProductRequest)
-routes.get("/api/productos/:id",getProductRequest)
-routes.put("/api/productos/:id",updateProductRequest)
+productRoutes.get("/api/productos",getProductsRequest)
+productRoutes.post("/api/productos",createProductRequest)
+productRoutes.delete("/api/productos/:id",deleteProductRequest)
+productRoutes.get("/api/productos/:id",getProductRequest)
+productRoutes.put("/api/productos/:id",updateProductRequest)
 
 
 
-export default routes
+export default productRoutes
