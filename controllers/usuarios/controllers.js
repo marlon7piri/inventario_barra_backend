@@ -1,7 +1,7 @@
 import Producto from "../../models/Productos.js";
 import mongoose from "mongoose";
 import Usuarios from "../../models/Usuarios.js";
-import bcrypt from 'bcrypt'
+import bcrypt from "bcrypt";
 
 export const getUsersRequest = async (req, res) => {
   try {
@@ -16,12 +16,12 @@ export const getUsersRequest = async (req, res) => {
 export const createUserRequest = async (req, res) => {
   const { nombre, password, rol } = req.body;
 
- const passwordhashed = await bcrypt.hash(password,10)
+  const passwordhashed = await bcrypt.hash(password, 10);
 
   try {
     const usuarios = new Usuarios({
       nombre,
-      password:passwordhashed,
+      password: passwordhashed,
       rol,
     });
     const usuariossaved = await usuarios.save();
@@ -51,12 +51,15 @@ export const updateUserRequest = async (req, res) => {
     nombre: usuarioupdated.nombre,
     password: usuarioupdated.password,
     rol: usuarioupdated.rol,
-    
   };
   try {
-    const usuarioupdated = await Usuarios.findByIdAndUpdate(id, newUsuarioUpdated, {
-      new: true,
-    });
+    const usuarioupdated = await Usuarios.findByIdAndUpdate(
+      id,
+      newUsuarioUpdated,
+      {
+        new: true,
+      }
+    );
 
     return res.json(usuarioupdated);
   } catch (error) {
