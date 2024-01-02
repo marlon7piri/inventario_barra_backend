@@ -13,11 +13,9 @@ export const getProveedoresRequest = async (req, res) => {
 export const createProveedoresRequest = async (req, res) => {
   const { nombre } = req.body;
 
-
   try {
     const proveedores = new Proveedores({
       nombre
-     
     });
     const proveedoressaved = await proveedores.save();
     return res.status(200).json(proveedoressaved);
@@ -43,8 +41,7 @@ export const updateProveedoresRequest = async (req, res) => {
   const proveedor = req.body;
 
   const proveedorupdated = {
-    nombre: proveedor.nombre
-   
+    nombre: proveedor.nombre,
   };
   try {
     const proveeedorfounding = await Proveedores.findByIdAndUpdate(

@@ -19,6 +19,9 @@ const ProductosSchemma = new Schema(
     area: {
       type: String,
       require: true,
+    },
+    proveedor: {
+      type: String
     }
   },
   {

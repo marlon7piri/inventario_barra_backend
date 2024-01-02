@@ -12,15 +12,16 @@ export const getProductsRequest = async (req, res) => {
 };
 
 export const createProductRequest = async (req, res) => {
-  const { nombre, cantidad, unidad, area,proveedor } = req.body;
+  const { nombre, cantidad, unidad, area, proveedor } = req.body;
 
-
+  console.log({ nombre, cantidad, unidad, area, proveedor });
   try {
     const newproduct = new Producto({
       nombre,
       unidad,
       cantidad,
-      area,proveedor
+      area,
+      proveedor,
     });
     const productosaved = await newproduct.save();
     return res.status(200).json(productosaved);
