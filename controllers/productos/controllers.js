@@ -12,14 +12,15 @@ export const getProductsRequest = async (req, res) => {
 };
 
 export const createProductRequest = async (req, res) => {
-  const { nombre, cantidad, unidad, area } = req.body;
+  const { nombre, cantidad, unidad, area,proveedor } = req.body;
+
 
   try {
     const newproduct = new Producto({
       nombre,
       unidad,
       cantidad,
-      area
+      area,proveedor
     });
     const productosaved = await newproduct.save();
     return res.status(200).json(productosaved);
@@ -49,6 +50,7 @@ export const updateProductRequest = async (req, res) => {
     cantidad: newproduct.cantidad,
     unidad: newproduct.unidad,
     area: newproduct.area,
+    proveedor: newproduct.proveedor,
   };
   try {
     const productupdate = await Producto.findByIdAndUpdate(id, newProductInfo, {
